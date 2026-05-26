@@ -6,6 +6,7 @@ dotenv.config({path : "../.env"});
 const ai = new GoogleGenAI({
     apiKey:process.env.API_KEY,
 });
+
 async function main() {
     const chat = ai.chats.create({
     model:"gemini-2.5-flash",
@@ -22,6 +23,7 @@ async function main() {
 
     // to take input from terminal
     while(true){
+        
         const question = readlineSync.question("Ask Question : ");
         const response = await chat.sendMessage({ message: question });
         console.log("Gemini : " + response.text);
