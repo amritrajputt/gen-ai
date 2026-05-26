@@ -1,4 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
+import readlineSync from "readline-sync";
 import dotenv from "dotenv";
 dotenv.config({path : "../.env"});
 
@@ -16,7 +17,17 @@ async function main() {
    }
 });
 
-    const response = await chat.sendMessage({ message: "what is avl tree in 50 words?" });
-    console.log(response.text);
+    // const response = await chat.sendMessage({ message: "what is avl tree in 50 words?" });
+    // console.log(response.text);
+
+    // to take input from terminal
+    while(true){
+        const question = readlineSync.question("Ask Question : ");
+        const response = await chat.sendMessage({ message: question });
+        console.log("Gemini : " + response.text);
+        if(question === "quit"){
+            break;
+        }
+    }
 }
 main();
