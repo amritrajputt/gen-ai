@@ -25,7 +25,7 @@ async function main() {
         const question = readlineSync.question("Ask Question : ");
         const response = await chat.sendMessage({ message: question });
         console.log("Gemini : " + response.text);
-        if(question === "quit"){
+        if(question.trim().toLowerCase() === "quit"){
             break;
         }
     }
